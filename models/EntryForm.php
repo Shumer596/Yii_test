@@ -1,8 +1,6 @@
 <?php
+namespace app\models;
 use yii\base\Model;
-/**
- * EntryForm is the model behind the login form.
- */
 class EntryForm extends Model
 {
     public $name;
