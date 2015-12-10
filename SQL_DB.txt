@@ -3,7 +3,7 @@
 
 
 
-
+db = yii_shum
 
 
 
@@ -14,4 +14,4 @@ create table user_reg
  user_name varchar(255), 
  user_passwd varchar(255), 
  user_email varchar(255) 
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
