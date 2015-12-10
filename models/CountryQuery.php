@@ -1,13 +1,14 @@
 <?php
 
 namespace app\models;
+use yii\db\ActiveQuery;
 
 /**
  * This is the ActiveQuery class for [[Country]].
  *
  * @see Country
  */
-class CountryQuery extends \yii\db\ActiveQuery
+class CountryQuery extends ActiveQuery
 {
     /*public function active()
     {

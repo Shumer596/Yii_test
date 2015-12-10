@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\UserReg;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -108,5 +109,23 @@ class SiteController extends Controller
             // либо страница отображается первый раз, либо есть ошибка в данных
             return $this->render('entry', ['model' => $model]);
         }
+    }
+
+
+
+    public function actionReg()
+    {
+        $model = new UserReg();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $model->save();
+//                return;
+            }
+        }
+
+        return $this->render('reg', [
+            'model' => $model,
+        ]);
     }
 }
