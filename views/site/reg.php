@@ -15,9 +15,9 @@ $this->title = 'Registration';
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'user_name') ?>
-    <?= $form->field($model, 'user_passwd') ?>
-    <?= $form->field($model, 'user_email') ?>
+    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'passwd') ?>
+    <?= $form->field($model, 'email') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>

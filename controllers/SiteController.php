@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\UserReg;
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -112,7 +113,6 @@ class SiteController extends Controller
     }
 
 
-
     public function actionReg()
     {
         $model = new UserReg();
@@ -120,6 +120,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 $model->save();
+                return $this->refresh();
 //                return;
             }
         }
@@ -127,5 +128,26 @@ class SiteController extends Controller
         return $this->render('reg', [
             'model' => $model,
         ]);
+    }
+
+    public function actionSql()
+    {
+        $db = Yii::$app->getDb();
+        $db = Yii::$app->db;
+        $db = Yii::$app->get('db');
+//        $data = $db->createCommand('SELECT * FROM country')
+//            ->queryAll();
+//
+        $query = new Query();
+//        $data = $query->select(['code','name'])
+        $data = $query->select(['code','name'])
+            ->from('country')
+//            ->where(['like', 'name','ca'])
+//            ->where(['or',['name'=>'canada'],['name'=>'china']])
+            ->where(['>', 'population', 150934000])
+            ->all();
+
+        return $this->render('sql',['data' => $data]);
+
     }
 }
