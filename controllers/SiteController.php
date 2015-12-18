@@ -112,7 +112,6 @@ class SiteController extends Controller
     }
 
 
-
     public function actionReg()
     {
         $model = new UserReg();
@@ -120,7 +119,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 $model->save();
-//                return;
+                return $this->refresh();
             }
         }
 
