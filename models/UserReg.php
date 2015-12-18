@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use \yii\db\ActiveRecord;
 /**
- * This is the model class for table "user_reg".
+ * This is the model class for table "user".
  *
  * @property integer $user_id
- * @property string $user_name
- * @property string $user_passwd
- * @property string $user_email
+ * @property string name
+ * @property string passwd
+ * @property string email
  */
 class UserReg extends ActiveRecord
 {
@@ -19,7 +19,7 @@ class UserReg extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'user_reg';
+        return 'user';
     }
 
     /**
@@ -28,9 +28,9 @@ class UserReg extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_name', 'user_passwd', 'user_email'],'required'],
-            [['user_name', 'user_passwd', 'user_email'], 'string', 'max' => 255],
-            ['user_email', 'email'],
+            [['name', 'passwd', 'email'],'required'],
+            [['name', 'passwd', 'email'], 'string', 'max' => 255],
+            ['email', 'email'],
         ];
     }
 
@@ -41,9 +41,9 @@ class UserReg extends ActiveRecord
     {
         return [
             'user_id' => Yii::t('app', 'User ID'),
-            'user_name' => Yii::t('app', 'Name'),
-            'user_passwd' => Yii::t('app', 'Password'),
-            'user_email' => Yii::t('app', 'Email'),
+            'name' => Yii::t('app', 'Name'),
+            'passwd' => Yii::t('app', 'Password'),
+            'email' => Yii::t('app', 'Email'),
         ];
     }
 }
