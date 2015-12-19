@@ -118,4 +118,26 @@ class CountryController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionActiveRecord()
+    {
+        $countryExist = Country::find()->where(['code' => 'PR'])->exists();
+        if (!$countryExist) {
+            $model = new Country();
+            $model->name = 'Pery';
+            $model->code = 'PR';
+            if (!$model->save()) {
+                var_dump($model->getErrors());
+                return "Model not saved";
+            }
+        }
+
+        $searchModel = new CountrySearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 }

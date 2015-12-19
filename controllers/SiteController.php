@@ -121,7 +121,6 @@ class SiteController extends Controller
             if ($model->validate()) {
                 $model->save();
                 return $this->refresh();
-//                return;
             }
         }
 

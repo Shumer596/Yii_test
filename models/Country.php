@@ -30,6 +30,7 @@ class Country extends ActiveRecord
         return [
             [['code', 'name'], 'required'],
             [['population'], 'integer'],
+            [['code'], 'unique'],
             [['code'], 'string', 'max' => 2],
             [['name'], 'string', 'max' => 52]
         ];
@@ -54,5 +55,16 @@ class Country extends ActiveRecord
     public static function find()
     {
         return new CountryQuery(get_called_class());
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if (100000 > $this->population) {
+                $this->population = 10000;
+            }
+            return true;
+        }
+        return false;
     }
 }
